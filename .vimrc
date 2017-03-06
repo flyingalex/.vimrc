@@ -18,6 +18,8 @@ Plugin 'https://github.com/Townk/vim-autoclose.git'
 Bundle 'ervandew/supertab'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'https://github.com/tpope/vim-commentary'
+Bundle 'https://github.com/tpope/vim-surround'
+Bundle 'https://github.com/mhinz/vim-signify'
 "Bundle 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
@@ -30,6 +32,7 @@ source ~/.vim/script/Stab.vim
 
 filetype on
 filetype plugin indent on  " Load plugins according to detected filetype.
+runtime macros/matchit.vim
 syntax on                  " Enable syntax highlighting.
 colorscheme molokai
 " php complete
