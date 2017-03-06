@@ -43,6 +43,7 @@ set omnifunc=syntaxcomplete#Complete
 "let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:plug_timeout = 100000
 set autoindent             " Indent according to previous line.
+set pastetoggle=<f5>       " Toggle paste
 set expandtab              " Use spaces instead of tabs.
 set softtabstop =4         " Tab key indents by 4 spaces.
 set shiftwidth  =4         " >> indents by 4 spaces.
