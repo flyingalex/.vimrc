@@ -17,24 +17,24 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/Townk/vim-autoclose.git'
 Bundle 'ervandew/supertab'
 Bundle 'shawncplus/phpcomplete.vim'
-Bundle 'https://github.com/tpope/vim-commentary'
-Bundle 'https://github.com/tpope/vim-surround'
-Bundle 'https://github.com/mhinz/vim-signify'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'https://github.com/tpope/vim-surround'
+Plugin 'https://github.com/mhinz/vim-signify'
+Plugin 'https://github.com/flyingalex/StabFromVimcasts'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "Bundle 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-"file scripts
-"http://vimcasts.org/episodes/tabs-and-spaces/
-source ~/.vim/script/Stab.vim
-
-
 filetype on
 filetype plugin indent on  " Load plugins according to detected filetype.
 runtime macros/matchit.vim
 syntax on                  " Enable syntax highlighting.
-colorscheme molokai
+"colorscheme molokai
+set background=dark
+colorscheme solarized
 " php complete
 set omnifunc=syntaxcomplete#Complete
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
@@ -58,7 +58,7 @@ set showmode               " Show current mode in command-line.
 set showcmd                " Show already typed keys when more are expected.
 
 set incsearch              " Highlight while searching with / or ?.
-set hlsearch               " Keep matches highlighted.
+"set hlsearch               " Keep matches highlighted.
 
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
@@ -72,6 +72,14 @@ set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
 set number                 " set  line number
 set list                   " Show non-printable characters.
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+"set autochdir              " Change current directory automatically
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -96,10 +104,3 @@ set updatecount =100
 set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
-
-
-"shortkey
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
