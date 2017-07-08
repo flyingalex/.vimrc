@@ -1,18 +1,14 @@
-"
-"" A (not so) minimal vimrc.
-"
-
 " You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
 " We set it explicitely to make our position clear!
 set nocompatible
 
+" Plugins {{{
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 " plugin on GitHub repo
 Plugin 'https://github.com/Townk/vim-autoclose.git'
 Bundle 'ervandew/supertab'
@@ -23,25 +19,28 @@ Plugin 'https://github.com/mhinz/vim-signify'
 Plugin 'https://github.com/flyingalex/StabFromVimcasts'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'johngrib/vim-game-code-break'
 "Bundle 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+"}}}
+
+" Vimscript file settings ---------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
 filetype on
 filetype plugin indent on  " Load plugins according to detected filetype.
 runtime macros/matchit.vim
 syntax on                  " Enable syntax highlighting.
-"colorscheme molokai
-set background=dark
 colorscheme solarized
-" php complete
-set omnifunc=syntaxcomplete#Complete
-"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-"set completeopt=longest,menuone
 
-"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:plug_timeout = 100000
+" options {{{
+set background=dark
 set autoindent             " Indent according to previous line.
 set pastetoggle=<f5>       " Toggle paste
 set expandtab              " Use spaces instead of tabs.
@@ -72,14 +71,50 @@ set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
 set number                 " set  line number
 set list                   " Show non-printable characters.
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+set ignorecase
+set smartcase
+set wildmode=longest,list
+" Put all temporary files under the same directory.
+" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+set backup
+set backupdir   =$HOME/.vim/files/backup/
+set backupext   =-vimbackup
+set backupskip  =
+set directory   =$HOME/.vim/files/swap/
+set updatecount =100
+set undofile
+set undodir     =$HOME/.vim/files/undo/
+set viminfo     ='100,n$HOME/.vim/files/info/viminfo
+
+"}}}
+
+" vim variables {{{
+let g:plug_timeout = 100000
+let mapleader = ","
 "set autochdir              " Change current directory automatically
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=["mycoolsnippets"]
+"}}}
+
+" map config {{{
+" Get the current file's path
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+" edit .vimrc
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" reload .vimrc
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" use jk for esc
+:inoremap jk <esc>
+" forbid esc
+:inoremap <esc> <nop>
+"}}}
 
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -93,14 +128,3 @@ if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
 
-" Put all temporary files under the same directory.
-" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-set backup
-set backupdir   =$HOME/.vim/files/backup/
-set backupext   =-vimbackup
-set backupskip  =
-set directory   =$HOME/.vim/files/swap/
-set updatecount =100
-set undofile
-set undodir     =$HOME/.vim/files/undo/
-set viminfo     ='100,n$HOME/.vim/files/info/viminfo
