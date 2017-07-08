@@ -2,7 +2,7 @@
 " We set it explicitely to make our position clear!
 set nocompatible
 
-" Plugins {{{
+" Plugins --------------------------------{{{
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -21,16 +21,18 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'johngrib/vim-game-code-break'
 "Bundle 'Valloric/YouCompleteMe'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 "}}}
 
-" Vimscript file settings ---------------------- {{{
+" Vimscript file settings ---------------{{{
+
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
 " }}}
 
 filetype on
@@ -39,7 +41,8 @@ runtime macros/matchit.vim
 syntax on                  " Enable syntax highlighting.
 colorscheme solarized
 
-" options {{{
+" options --------------------------------{{{
+
 set background=dark
 set autoindent             " Indent according to previous line.
 set pastetoggle=<f5>       " Toggle paste
@@ -88,7 +91,8 @@ set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
 "}}}
 
-" vim variables {{{
+" vim variables --------------------------{{{
+
 let g:plug_timeout = 100000
 let mapleader = ","
 "set autochdir              " Change current directory automatically
@@ -96,9 +100,11 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories=["mycoolsnippets"]
+
 "}}}
 
-" map config {{{
+" map config -------------------------------{{{
+
 " Get the current file's path
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
 noremap <Up> <NOP>
@@ -114,6 +120,7 @@ noremap <Right> <NOP>
 :inoremap jk <esc>
 " forbid esc
 :inoremap <esc> <nop>
+
 "}}}
 
 if has('multi_byte') && &encoding ==# 'utf-8'
