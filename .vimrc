@@ -1,5 +1,4 @@
-" You want Vim, not vi. When Vim finds a vimrc, 'nocompatible' is set anyway.
-" We set it explicitely to make our position clear!
+
 set nocompatible
 
 " Plugins --------------------------------{{{
@@ -112,16 +111,18 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 " edit .vimrc
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " reload .vimrc
-:nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " use jk for esc
-:inoremap jk <esc>
+inoremap jk <esc>
 " forbid esc
-:inoremap <esc> <nop>
+inoremap <esc> <NOP>
 
 "}}}
+
+" if clause-------------------{{{
 
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -134,4 +135,26 @@ endif
 if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
+
+"}}}
+
+
+" vimscript notes --------------------- {{{
+"  ==# 大小写敏感
+"  ==? 大小写不敏感
+"
+"  函数需要大写开头
+"  调用函数的方法有两种: 1. call, 有副作用时使用,返回值会被丢弃; 2. echom,获取返回值.
+"  需要参数的Vimscript函数的时候，你总需要给参数加上前缀a:，来告诉Vim去参数作用域查找
+"  function Varg2(foo, ...) // ... 可变参数
+"    echom a:foo            // 函数变量
+"    echom a:0              // 可变参数的个数
+"    echom a:1              // 可变参数第一个值
+"    echo a:000             // 可变参数列表
+"    let a:foo = 'Nope'     // 函数变量赋值
+"  endfunction
+"  call Varg2('a', 'b', 'c')
+
+"
+"}}}
 
