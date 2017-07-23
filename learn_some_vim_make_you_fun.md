@@ -1,3 +1,7 @@
+[Learn Vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/)
+
+[简明 VIM 练级攻略](http://coolshell.cn/articles/5426.html)
+
 ### Survive
 
 - vi/vim
