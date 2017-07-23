@@ -162,7 +162,7 @@ endif
 "    let a:foo = 'Nope'     // 函数变量赋值
 "  endfunction
 "  call Varg2('a', 'b', 'c')
-
-"
+"  copy to system clipboard: "*y<cr>
+" 
 "}}}
 
