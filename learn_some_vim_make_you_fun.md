@@ -9,14 +9,14 @@
 
 - a,o,O
 - 0,^,$,g_,/pattern
-- u, <C-r>
+- u, `<C-r>`
 - :e
 - bn,bp
 
 ### Feel Better, Stronger, Faster
 
 - .
-- N<command>
+- `N<command>`
 - NG
 - gg
 - G
@@ -27,7 +27,7 @@
 
 ### Vim Superpowers
 
-- f<char>, `;`, `,`
+- `f<char>`, `;`, `,`
 - t,
 - F
 - T
@@ -37,13 +37,13 @@
 - va)
 - v2i)
 - v2a)
-- <C-v>
-- <C-p>
-- <C-n>
-- <C-d>
-- <c-u>
+- `<C-v>`
+- `<C-p>`
+- `<C-n>`
+- `<C-d>`
+- `<c-u>`
 - macro, qaq
-- v,V,<C-v>
+- v,V,`<C-v>`
 - :split, :vsplit
 
 
