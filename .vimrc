@@ -120,6 +120,14 @@ inoremap jk <esc>
 " forbid esc
 inoremap <esc> <NOP>
 
+" tab switch
+noremap <C-j> :tabprevious<cr>
+noremap <C-k> :tabnext<cr>
+noremap <leader>n :tabnew<cr>
+
+" Moving to matching braces
+noremap % v%
+
 "}}}
 
 " if clause-------------------{{{
