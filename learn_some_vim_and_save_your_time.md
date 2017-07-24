@@ -27,7 +27,7 @@
 - e
 - b
 - %
-- *
+- `*`
 
 ### Vim Superpowers
 
@@ -46,6 +46,7 @@
 - `<C-n>`
 - `<C-d>`
 - `<c-u>`
+- {,}
 - macro, qaq
 - v,V,`<C-v>`
 - :split, :vsplit
