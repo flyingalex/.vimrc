@@ -4,51 +4,54 @@
 
 ### Survive
 
-- vi/vim
-- :q, :wq, :q!
-- i, x, dd, p, P, yy
-- hjkl
+- vi/vim -> open the editor
+- :q -> Quit
+- :wq -> Save and Quit
+- :q! -> Quit and Not Save
+- i -> Insert mode
+- x -> Delete the char under the cursor
+- dd -> Delete the current line
+- pP -> Paste to above or under the current line
+- yy -> Copy current line
+- hjkl -> Right, Down, Up, Left
 
 ### Feel comfortable
 
-- a,o,O
-- 0,^,$,g_,/pattern
-- u, `<C-r>`
-- :e
-- bn,bp
+- a -> Insert after the cursor
+- oO -> Insert a new line after/before the current one
+- 0 -> Go to the first column
+- ^ -> go to the first non-blank character of the line
+- $ -> go to the end of line
+- g_ -> go to the last non-blank character of line
+- /pattern -> search for pattern
+- u -> undo
+- `<C-r>` -> redo  
+- :e `<path/to/file>` -> open file 
+- bn,bp -> show next/previous file (buffer)
 
 ### Feel Better, Stronger, Faster
 
-- .
-- `N<command>`
-- NG
-- gg
-- G
-- e
-- b
-- %
-- `*`
+- . -> Repeat the last command 
+- `N<command>` -> Repeat the command N times.
+- NG -> Go to N line
+- gg -> Go to first line
+- G -> Go to last line
+- b -> Open one buffer file
+- % -> Go to the corresponding (, {, [.
+- `*` -> go to next/previous(#) occurrence of the word under the cursor
 
 ### Vim Superpowers
 
-- `f<char>`, `;`, `,`
-- t,
-- F
-- T
-- vi"
-- va"
-- vi)
-- va)
-- v2i)
-- v2a)
-- `<C-v>`
-- `<C-p>`
-- `<C-n>`
-- `<C-d>`
-- `<c-u>`
-- {,}
-- macro, qaq
-- v,V,`<C-v>`
-- :split, :vsplit
+- `f<char>`, `;`, `,` -> Find one char on the current line, `;` go to the next same char, ',' go back to the last same char
+- t, -> Go to just before the character ,
+- F,T -> Like f and t but backward
+- `<C-p>` -> Go to the previous line 
+- `<C-n>` -> GO to the next line
+- `<C-d>` -> Go down a half screen
+- `<c-u>` -> Go up a half screen
+- {,} -> previous/next empty line
+- v,V,`<C-v>` -> Visual mode
+- :split, :vsplit -> split the window
+- tabnew -> open a new tab
 
 
