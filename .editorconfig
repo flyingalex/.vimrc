@@ -18,7 +18,7 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
-[*.html,*.exs,*.ex,*.js,*.json]
+[*.{html,exs,ex,js,json,jsx}]
 indent_style = space
 indent_size = 2
 
