@@ -75,6 +75,7 @@ set number                 " set  line number
 set list                   " Show non-printable characters.
 set ignorecase
 set smartcase
+set wildignorecase         "ingore case in command mode
 set wildmode=longest,list
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
