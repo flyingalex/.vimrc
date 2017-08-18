@@ -1,4 +1,3 @@
-
 set nocompatible
 
 " Plugins --------------------------------{{{
@@ -19,6 +18,12 @@ Plugin 'https://github.com/flyingalex/StabFromVimcasts'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'johngrib/vim-game-code-break'
+Plugin 'junegunn/goyo.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/mru.vim'
 "Bundle 'Valloric/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,7 +80,7 @@ set number                 " set  line number
 set list                   " Show non-printable characters.
 set ignorecase
 set smartcase
-set wildignorecase         "ingore case in command mode
+set wildignorecase
 set wildmode=longest,list
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
@@ -88,7 +93,11 @@ set updatecount =100
 set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}
 
 " vim variables --------------------------{{{
@@ -121,14 +130,13 @@ inoremap jk <esc>
 " forbid esc
 inoremap <esc> <NOP>
 
-" tab switch
-noremap <C-j> :tabprevious<cr>
-noremap <C-k> :tabnext<cr>
-noremap <leader>n :tabnew<cr>
+" tab feature
+nnoremap <C-j> :tabprevious<cr>
+nnoremap <C-k> :tabnext<cr>
+nnoremap <leader>n :tabnew<cr>
 
-" Moving to matching braces
-noremap % v%
-
+nnoremap <silent> <leader>z :Goyo<cr>
+nnoremap <C-n> :NERDTreeToggle<CR>
 "}}}
 
 " if clause-------------------{{{
@@ -163,7 +171,6 @@ endif
 "    let a:foo = 'Nope'     // 函数变量赋值
 "  endfunction
 "  call Varg2('a', 'b', 'c')
-"  copy to system clipboard: "*y<cr>
-" 
-"}}}
 
+"
+"}}}
