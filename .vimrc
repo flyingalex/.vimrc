@@ -135,6 +135,8 @@ nnoremap <C-j> :tabprevious<cr>
 nnoremap <C-k> :tabnext<cr>
 nnoremap <leader>n :tabnew<cr>
 
+noremap % v%
+
 nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap <C-n> :NERDTreeToggle<CR>
 "}}}
