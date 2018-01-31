@@ -9,22 +9,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'https://github.com/Townk/vim-autoclose.git'
-Bundle 'ervandew/supertab'
-Bundle 'shawncplus/phpcomplete.vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'https://github.com/tpope/vim-surround'
-Plugin 'https://github.com/mhinz/vim-signify'
 Plugin 'https://github.com/flyingalex/StabFromVimcasts'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'johngrib/vim-game-code-break'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/goyo.vim'
 Plugin 'tpope/vim-markdown'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/mru.vim'
-"Bundle 'Valloric/YouCompleteMe'
+Plugin 'shime/vim-livedown'
+Plugin 'leafgarland/typescript-vim',
+Plugin 'tpope/vim-commentary'
+Plugin 'w0rp/ale'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'tpope/vim-fugitive'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -39,11 +37,12 @@ augroup END
 
 " }}}
 
-filetype on
+filetype off
 filetype plugin indent on  " Load plugins according to detected filetype.
 runtime macros/matchit.vim
-syntax on                  " Enable syntax highlighting.
+syntax enable                  " Enable syntax highlighting.
 colorscheme solarized
+" colorscheme molokai
 
 " options --------------------------------{{{
 
@@ -96,8 +95,6 @@ set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPBuffer'
 
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "}}}
 
 " vim variables --------------------------{{{
@@ -109,13 +106,35 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories=["mycoolsnippets"]
+"}}}
+
+" plugin config -------------------------{{{
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" show hidden files
+let NERDTreeShowHidden=1
+
+" set typescript file extension
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+let g:typescript_indent_disable = 1
+
+" Put this in vimrc or a plugin file of your own.
+" After this is configured, :ALEFix will try and fix your JS code with ESLint.
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+
+" Set this setting in vimrc if you want to fix files automatically on save.
+" This is off by default.
+let g:ale_fix_on_save = 1
 
 "}}}
 
 " map config -------------------------------{{{
 
 " Get the current file's path
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -135,10 +154,11 @@ nnoremap <C-j> :tabprevious<cr>
 nnoremap <C-k> :tabnext<cr>
 nnoremap <leader>n :tabnew<cr>
 
-noremap % v%
-
 nnoremap <silent> <leader>z :Goyo<cr>
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap gm :LivedownToggle<CR>
+
+"nnoremap :w  :!mkdir -p %:h<CR>
 "}}}
 
 " if clause-------------------{{{
