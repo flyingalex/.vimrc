@@ -1,0 +1,19 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "window.zoomLevel": 1,
+    "explorer.confirmDelete": false,
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4  
+    },
+    "explorer.confirmDragAndDrop": false,
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true
+    },
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all"
+}
