@@ -11,18 +11,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/Townk/vim-autoclose.git'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'https://github.com/flyingalex/StabFromVimcasts'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'junegunn/goyo.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'shime/vim-livedown'
-Plugin 'leafgarland/typescript-vim',
 Plugin 'tpope/vim-commentary'
+Plugin 'posva/vim-vue'
 Plugin 'w0rp/ale'
-Plugin 'heavenshell/vim-jsdoc'
-Plugin 'tpope/vim-fugitive'
+Plugin 'Shougo/denite.nvim'
+Plugin 'HerringtonDarkholme/yats.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -41,8 +35,8 @@ filetype off
 filetype plugin indent on  " Load plugins according to detected filetype.
 runtime macros/matchit.vim
 syntax enable                  " Enable syntax highlighting.
-colorscheme solarized
-" colorscheme molokai
+"colorscheme solarized
+colorscheme molokai
 
 " options --------------------------------{{{
 
@@ -81,6 +75,7 @@ set ignorecase
 set smartcase
 set wildignorecase
 set wildmode=longest,list
+hi CursorLine term=bold cterm=bold guibg=Grey40
 " Put all temporary files under the same directory.
 " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
 set backup
@@ -110,26 +105,30 @@ let g:UltiSnipsSnippetDirectories=["mycoolsnippets"]
 
 " plugin config -------------------------{{{
 
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" show hidden files
-let NERDTreeShowHidden=1
-
-" set typescript file extension
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
-let g:typescript_indent_disable = 1
 
 " Put this in vimrc or a plugin file of your own.
 " After this is configured, :ALEFix will try and fix your JS code with ESLint.
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'vue': ['eslint']
 \}
-
 " Set this setting in vimrc if you want to fix files automatically on save.
 " This is off by default.
 let g:ale_fix_on_save = 1
 
+"vue
+autocmd FileType vue syntax sync fromstart
+
+" ts config
+let g:yats_host_keyword = 1
+
+" vue config
+let g:vue_disable_pre_processors = 1
+
 "}}}
+
+
 
 " map config -------------------------------{{{
 
@@ -154,11 +153,8 @@ nnoremap <C-j> :tabprevious<cr>
 nnoremap <C-k> :tabnext<cr>
 nnoremap <leader>n :tabnew<cr>
 
-nnoremap <silent> <leader>z :Goyo<cr>
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-p> :Denite buffer<CR>
 nnoremap gm :LivedownToggle<CR>
-
-"nnoremap :w  :!mkdir -p %:h<CR>
 "}}}
 
 " if clause-------------------{{{
