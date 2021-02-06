@@ -1,24 +1,52 @@
 set nocompatible
+set encoding=utf8
 
-" Plugins --------------------------------{{{
+"Plugins --------------------------------{{{
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 " plugin on GitHub repo
-Plugin 'https://github.com/Townk/vim-autoclose.git'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'https://github.com/flyingalex/StabFromVimcasts'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'posva/vim-vue'
-Plugin 'w0rp/ale'
-Plugin 'Shougo/denite.nvim'
-Plugin 'HerringtonDarkholme/yats.vim'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+Plug 'https://github.com/Townk/vim-autoclose.git'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'https://github.com/flyingalex/StabFromVimcasts'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'posva/vim-vue'
+Plug 'dense-analysis/ale'
+Plug 'Shougo/denite.nvim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-syntastic/syntastic'
+
+"git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
+Plug 'elixir-editors/vim-elixir'
+Plug 'carlosgaldino/elixir-snippets'
+Plug 'mhinz/vim-mix-format'
+Plug 'slashmili/alchemist.vim'
+
+" theme
+Plug 'altercation/vim-colors-solarized'
+Plug 'flrnd/candid.vim'
+Plug 'sainnhe/forest-night'
+Plug 'lifepillar/vim-solarized8'
+Plug 'morhetz/gruvbox'
+
+Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+
+" search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'Valloric/YouCompleteMe'
+call plug#end()
 
 "}}}
 
@@ -33,14 +61,18 @@ augroup END
 
 filetype off
 filetype plugin indent on  " Load plugins according to detected filetype.
-runtime macros/matchit.vim
-syntax enable                  " Enable syntax highlighting.
-"colorscheme solarized
-colorscheme molokai
+
+syntax on                  " Enable syntax highlighting.
+set background=dark
+colorscheme gruvbox
+
+" colorscheme forest-night
+" let g:solarized_termcolors=256 "fix solarized theme issue
+" colorscheme solarized
+" colorscheme monokai
 
 " options --------------------------------{{{
 
-set background=dark
 set autoindent             " Indent according to previous line.
 set pastetoggle=<f5>       " Toggle paste
 set expandtab              " Use spaces instead of tabs.
@@ -89,7 +121,6 @@ set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPBuffer'
-
 "}}}
 
 " vim variables --------------------------{{{
@@ -126,6 +157,54 @@ let g:yats_host_keyword = 1
 " vue config
 let g:vue_disable_pre_processors = 1
 
+let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+let g:clang_user_options='|| exit 0'
+let g:clang_complete_auto = 1
+let g:clang_complete_copen = 1
+let g:clang_debug = 1
+
+
+"NERDTree config
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+"vim-mix-format
+let g:mix_format_on_save = 1
+
+
+"search
+let g:rg_command = 'rg --vimgrep -S'
+nmap <C-P> :FZF<CR>
+" add blew command to .bash to ignore .gitignore files
+" export FZF_DEFAULT_COMMAND='rg --files' 
+" dependency
+" https://github.com/dandavison/delta
+" https://github.com/dandavison/delta
+
+" 'tiagofumo/vim-nerdtree-syntax-highlight' config
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:NERDTreeHighlightCursorline = 0
+
+" 'ryanoasis/vim-devicons' config
+
+" 'vim-airline/vim-airline' config
+let g:airline#extensions#tabline#enabled = 1
+
+" 'vim-airline/vim-airline-themes' config
+let g:airline_theme='base16_atelierforest'
+
+" 'vim-syntastic/syntastic' config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" 'Valloric/YouCompleteMe' config
+let g:ycm_autoclose_preview_window_after_completion=1
 "}}}
 
 
@@ -153,7 +232,7 @@ nnoremap <C-j> :tabprevious<cr>
 nnoremap <C-k> :tabnext<cr>
 nnoremap <leader>n :tabnew<cr>
 
-nnoremap <C-p> :Denite buffer<CR>
+" nnoremap <C-p> :Denite buffer<CR>
 nnoremap gm :LivedownToggle<CR>
 "}}}
 
@@ -192,3 +271,4 @@ endif
 
 "
 "}}}
+
