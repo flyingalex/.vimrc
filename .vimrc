@@ -20,12 +20,15 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-syntastic/syntastic'
 
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 "git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 Plug 'elixir-editors/vim-elixir'
-Plug 'carlosgaldino/elixir-snippets'
 Plug 'mhinz/vim-mix-format'
 Plug 'slashmili/alchemist.vim'
 
@@ -205,6 +208,10 @@ let g:syntastic_check_on_wq = 0
 
 " 'Valloric/YouCompleteMe' config
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_key_list_select_completion = ['<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-k>']
+
+" snippets
 "}}}
 
 
